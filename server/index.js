@@ -22,19 +22,7 @@ async function loadPosts() {
         listPost.innerText = ` ${posts.poster_id}, ${posts.body}`;
         allPost.appendChild(listPost)
     })
-
 }
-
-
-async function createNewPost(event) {
-
-    event.preventDefault();
-    const posterId = document.querySelector('#postIdAll').value
-    const body  = document.querySelector('#postBodyAll').value
-    let response = await axios.post(`http://localhost:3000/posts/register`, {poster_id, body})
-    loadUsers();
-}
-
 
 async function  displayUserPost (event) {
     event.preventDefault();  
@@ -50,7 +38,14 @@ async function  displayUserPost (event) {
     })
 }
 
+async function createNewPost(event) {
+    event.preventDefault();
+    const poster_id = document.querySelector('#postIdAll').value
+    const body  = document.querySelector('#postBodyAll').value
+    let response = await axios.post(`http://localhost:3000/posts/register`, {poster_id, body})
+    loadPosts()
 
+}
 
 // async function loadUsers() {
 //     const usersList = document.querySelector('#usersList');
@@ -72,10 +67,4 @@ async function  displayUserPost (event) {
 //     let response = await axios.post(`http://localhost:3000/users/register`, {firstname, lastname, age });
 //     loadUsers();
 // }
-
-
-
-
-
-
 
